@@ -60,3 +60,37 @@ uvicorn main:app --reload
 ```
 ### 6. Accessing the API
 Access the Swagger UI to interact with the API at the localhost url.
+
+### 7. Add Admin user
+Access the Swaager UI, register admin user using register api. 
+{
+  "username": "userA",
+  "email": "userA@gmail.com",
+  "role": "admin",
+  "password": "abcd1234"
+}
+
+### 8. Setup Permissions
+1. Add first create_permission to the admin user
+Navigate to routes/permissions.py file .In /create_permission API .Comment the below lines:
+//if not await validate_permission("create_permission",token):
+//       raise HTTPException(status_code=403,detail=f"User is not authorised to perform this action") for adding first create permission
+
+2. Get the  token from /login  API. Copy the token and put token in /create_permission API
+
+3. Hit /create_permissions API with following payload 
+{
+   "permissionName": "create_permission",
+   "role": "admin"
+}
+
+4. Once this permission is added successfully . Uncomment the commented lines in step1
+5. Get the new token from /login API
+6. Now we need to add permissions for Admin and constomer role as required in API.
+7. Below is list of permissions for Admin
+{
+   list_list_role_permissions
+   all_permissions
+   delete_permissions
+}
+9. Below is list of permissions for Customer
